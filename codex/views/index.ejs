@@ -1,0 +1,15 @@
+<%- include('./partials/header.ejs') %>
+
+<header>
+<div id="nav-title">
+    <h1><%= title %></h1>
+    <form action="/codex/search" method="GET">
+        <input id="searchbar" type="text" name="name" placeholder="Search Cards">
+    </form>
+</div>
+</header>
+
+<a href=""><div id="new-deck">+</div></a>
+
+
+<%- include('./partials/footer.ejs') %>

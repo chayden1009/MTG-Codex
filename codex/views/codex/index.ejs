@@ -1,0 +1,24 @@
+<%- include('../partials/header.ejs') %>
+<nav>
+    <a href="/">Home |</a>
+    <% if (user) { %>
+        <a href="/logout">LOGOUT</a>    
+        <% } else { %>
+            <a href="/auth/google" class="login">LOG IN&nbsp;<img src="https://i.imgur.com/FHjYyi0.png"></a>
+    <% } %>
+</nav>
+
+<div id="nav-title">
+    <form action="/search" method="GET">
+        <input id="searchbar" type="text" name="name" placeholder="Search Cards">
+    </form>
+</div>
+
+<div id="card-container">
+    <% results.forEach(card => { %>
+        <div class="results"><a href="<%= card._id %>"><img src="<%=card.image_uris.small%>"></a></div>
+    <% }) %>
+</div>
+
+
+<%- include('../partials/footer.ejs') %>
