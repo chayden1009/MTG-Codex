@@ -6,6 +6,9 @@ router.get('/new', (req, res) => {
     res.render('decks/new')
 });
 
+router.get('/:id/edit', decksCtrl.edit);
+
 router.post('/', decksCtrl.create);
+
 
 module.exports = router;

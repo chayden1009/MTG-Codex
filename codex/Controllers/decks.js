@@ -12,8 +12,11 @@ const create = async (req, res) => {
     } catch (err) {
         console.error(err);
     }
-    res.render('decks/view', {deck});
+    res.redirect('/');
 }
+
+
+
 
 
 module.exports = {
