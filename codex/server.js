@@ -13,7 +13,7 @@ require('./config/database');
 
 const homeRouter = require('./routes/home');
 const codexRouter = require('./routes/codex')
-
+const decksRouter = require('./routes/decks')
 const app = express();
 
 // view engine setup
@@ -41,7 +41,7 @@ app.use((req, res, next) => {
 
 app.use('/', homeRouter);
 app.use('/codex', codexRouter);
-// app.use('/', cardsRouter);
+app.use('/decks', decksRouter);
 
 
 

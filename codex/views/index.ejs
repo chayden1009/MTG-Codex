@@ -1,5 +1,12 @@
 <%- include('./partials/header.ejs') %>
+<nav>
+    <% if (user) { %>
 
+        <a href="/logout">LOGOUT</a>    
+    <% } else { %>
+        <a href="/auth/google" class="login">LOG IN&nbsp;<img src="https://i.imgur.com/FHjYyi0.png"></a>
+    <% } %>
+</nav>
 <header>
 <div id="nav-title">
     <h1><%= title %></h1>
@@ -8,8 +15,16 @@
     </form>
 </div>
 </header>
-
-<a href=""><div id="new-deck">+</div></a>
+<% if (user) { %>
+    <div class="wrapper">
+        <div id="new-deck" class="deck"><a href="/decks/new">+</a></div>
+    <%  user.decks.forEach(d => { %>
+        <div class="deck">
+            <p><%= d.name %></p>
+        </div>
+    <% }) %>
+    </div>
+<% } %>
 
 
 <%- include('./partials/footer.ejs') %>

@@ -1,0 +1,7 @@
+<%- include('../partials/header.ejs') %>
+    <h1>Create a New Deck</h1>
+    <form action="/decks" method="POST">
+        <input type="text" name="name" placeholder="Deck Name">
+        <input type="submit" value="Add Deck">
+    </form>
+<%- include('../partials/footer.ejs') %>

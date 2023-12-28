@@ -9,7 +9,7 @@ const search = async (req, res) => {
     const results = await Card.find({$text:{$search:`\"${req.query.name}\"`}})
     
     try {
-        res.render(`codex`, {results});
+        res.render(`codex/index`, {results});
     } catch(err) {
         res.render('codex', {results: null})
         console.error(err)
