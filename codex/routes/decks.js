@@ -6,7 +6,7 @@ router.get('/new', (req, res) => {
     res.render('decks/new')
 });
 
-router.get('/:id/edit', decksCtrl.edit);
+router.get('/:id/view', decksCtrl.view);
 
 router.post('/', decksCtrl.create);
 

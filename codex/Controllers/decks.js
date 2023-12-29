@@ -15,10 +15,14 @@ const create = async (req, res) => {
     res.redirect('/');
 }
 
-
+const view = async (req, res) => {
+    const user = await User.findById(req.user.id);
+    user.decks.findById(req.id);
+}
 
 
 
 module.exports = {
     create,
+    view,
 }
