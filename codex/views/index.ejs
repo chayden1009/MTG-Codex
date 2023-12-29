@@ -19,9 +19,7 @@
     <div class="wrapper">
         <div id="new-deck" class="deck"><a href="/decks/new">+</a></div>
     <%  user.decks.forEach(d => { %>
-        <div class="deck">
-            <p><%= d.name %></p>
-        </div>
+        <div class="deck"><a href="decks/<%=d.id%>"><%= d.name %></a></div>
     <% }) %>
     </div>
 <% } %>

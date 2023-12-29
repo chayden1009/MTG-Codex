@@ -1,5 +1,6 @@
 const Card = require('../Models/Card');
 const User = require('../Models/User');
+const mongoose = require('mongoose');
 
 const create = async (req, res) => {
     const user = await User.findById(req.user.id)
@@ -17,7 +18,11 @@ const create = async (req, res) => {
 
 const view = async (req, res) => {
     const user = await User.findById(req.user.id);
-    user.decks.findById(req.id);
+    const decks = user.decks;
+    const deck = decks.find(d => d._id.equals(mongoose.Types.ObjectId.createFromHexString(req.params.id)));
+    
+    console.log(deck)
+    res.render('decks/view', {title: deck.name, deck});
 }
 
 
