@@ -1,15 +1,27 @@
 <%- include('../partials/header.ejs') %>
 
 <div id="nav-title">
-    <form action="/codex/search" method="GET">
+    <form action="/decks/search" method="GET">
         <input id="searchbar" type="text" name="name" placeholder="Search Cards">
+        <input type="hidden" name="deckId" value="<%= deck._id %>">
     </form>
 </div>
 
-<% if (!results) { %> <h1>Search for cards to add</h1> <% } else { %>
-    <% results.forEach(card => { %> 
-        <img src="<%=card.image_uris.small%>">
-    <% }) %> 
-<% } %>
+<div>
+    <div id="edit-search">
+        <% if (!results) { %> <h1>Search for cards to add</h1> <% } else { %>
+            <% results.forEach(card => { %> 
+                <img src="<%=card.image_uris.small%>">
+            <% }) %> 
+        <% } %>
+    </div>
+    <div id="deck-view">
+     <% if (deck.cards.length > 0) { %>
+        <% cards.forEach(card => { %>
+            <img src="<%card.image_uris.small%>">
+        <% }) %>
+     <% } %>
+    </div>
+</div>
 
 <%- include('../partials/footer.ejs') %>

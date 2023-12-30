@@ -28,13 +28,27 @@ const edit = async (req, res) => {
     const user = await User.findById(req.user.id);
     const deck = user.decks.find(d => d._id.equals(mongoose.Types.ObjectId.createFromHexString(req.params.id)))
     
-    res.render('decks/edit', {results: null})
+    res.render('decks/edit', {results: null, deck})
 }
 
 const addCard = async (req, res) => {
     const user = await User.findById(req.user.id);
     const deck = user.decks.find(d => d._id.equals(mongoose.Types.ObjectId.createFromHexString(req.params.id)));
     res.render('decks/:id/add', {title: deck.name, deck})
+}
+
+const search = async (req, res) => {
+    const user = await User.findById(req.user.id);
+    const deck = user.decks.find(d => d._id.equals(mongoose.Types.ObjectId.createFromHexString(req.deckId)));
+
+    const results = await Card.find({$text:{$search:`\"${req.query.name}\"`}})
+    
+    try {
+        res.render(`decks/${deck._id}/edit`, {results});
+    } catch(err) {
+        res.render('decks/edit', {results: null})
+        console.error(err)
+    }
 }
 
 
@@ -44,4 +58,5 @@ module.exports = {
     view,
     add: addCard,
     edit,
+    search,
 }

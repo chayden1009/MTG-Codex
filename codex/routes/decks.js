@@ -12,6 +12,8 @@ router.get('/:id/add', decksCtrl.add);
 
 router.get('/:id/edit', decksCtrl.edit);
 
+router.get('/search', decksCtrl.search);
+
 router.post('/', decksCtrl.create);
 
 
