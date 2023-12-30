@@ -8,6 +8,8 @@ router.get('/new', (req, res) => {
 
 router.get('/:id', decksCtrl.view);
 
+router.get('/:id/add', decksCtrl.add);
+
 router.post('/', decksCtrl.create);
 
 

@@ -74,3 +74,38 @@ a > div {
 #new-deck {
   font-size: 6vmin;
 }
+
+#mainwrapper {
+  display: flex;
+  flex-direction: row;
+}
+#side-bar {
+  height: 90vmin;
+  width: 30vmin;
+  margin-right: 2vmin;
+  display: flex;
+  flex-direction: column;
+}
+
+#card-list {
+  border: solid 1px black;
+  height: 90vmin;
+  width: 70vmin;
+  margin-left: 2vmin;
+}
+
+#deck-title {
+  border: solid 1px black;
+  border-radius: 10px;
+  text-align: center;
+}
+
+#filters {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  border: solid 1px black;
+  border-radius: 10px;
+  height: 30vmin;
+  padding-top: 10px;
+}

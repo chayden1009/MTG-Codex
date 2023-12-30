@@ -1,7 +1,35 @@
 <%- include("../partials/header.ejs") %>
-<h1> <%= deck.name %> </h1>
 
+<div id="nav-title">
+    <form action="/codex/search" method="GET">
+        <input id="searchbar" type="text" name="name" placeholder="Search Cards">
+    </form>
+</div>
 
+<div id="mainwrapper">
+    <div id="side-bar">
+        <h1 id="deck-title"> <%= title %> </h1>
+        <form id="filters" action="">
+            <select name="" id="">
+                <option value="">filter</option>
+                <option value="">filter</option>
+                <option value="">filter</option>
+                <option value="">filter</option>
+            </select>
+            <input type="checkbox" name="Option" id="option1">
+            <label for="option1">option 1</label>
+            <input type="checkbox" id="option2">
+            <label for="option2">option 2</label>
+        </form>
+    </div>
+    <div id="card-list">
+        <% if (deck.cards.length > 0) {deck.cards.forEach(card => { %>
+            <img src="<%= card.image_uris.small%>">
+        <% })} else { %> 
+            <h1>Deck is Empty<h1> 
+        <% } %>
+    </div>
+</div>
 
-<button>Edit</button>
+<a href="<%=deck.id%>/add"><button>Add Cards</button></a>
 <%- include("../partials/footer.ejs") %>
