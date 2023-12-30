@@ -24,10 +24,17 @@ const view = async (req, res) => {
     res.render('decks/view', {title: deck.name, deck});
 }
 
+const edit = async (req, res) => {
+    const user = await User.findById(req.user.id);
+    const deck = user.decks.find(d => d._id.equals(mongoose.Types.ObjectId.createFromHexString(req.params.id)))
+    
+    res.render('decks/edit', {results: null})
+}
+
 const addCard = async (req, res) => {
     const user = await User.findById(req.user.id);
     const deck = user.decks.find(d => d._id.equals(mongoose.Types.ObjectId.createFromHexString(req.params.id)));
-    res.render('decks/view', {title: deck.name, deck})
+    res.render('decks/:id/add', {title: deck.name, deck})
 }
 
 
@@ -36,4 +43,5 @@ module.exports = {
     create,
     view,
     add: addCard,
+    edit,
 }

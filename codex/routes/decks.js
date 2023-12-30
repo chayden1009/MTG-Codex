@@ -10,6 +10,8 @@ router.get('/:id', decksCtrl.view);
 
 router.get('/:id/add', decksCtrl.add);
 
+router.get('/:id/edit', decksCtrl.edit);
+
 router.post('/', decksCtrl.create);
 
 
