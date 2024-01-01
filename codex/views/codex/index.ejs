@@ -6,7 +6,7 @@
     </form>
 </div>
 
-<div id="card-container">
+<div class="wrapper" id="card-container">
     <% results.forEach(card => { %>
         <div class="results"><a href="<%= card._id %>"><img src="<%=card.image_uris.small%>"></a></div>
     <% }) %>

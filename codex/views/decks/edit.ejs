@@ -1,27 +1,25 @@
 <%- include('../partials/header.ejs') %>
 
+
 <div id="nav-title">
-    <form action="/decks/search" method="GET">
-        <input id="searchbar" type="text" name="name" placeholder="Search Cards">
+    <form action="edit" method="get">
+        <input id="searchbar" type="text" placeholder="Search Cards" name="searchValue">
         <input type="hidden" name="deckId" value="<%= deck._id %>">
     </form>
 </div>
 
 <div>
-    <div id="edit-search">
-        <% if (!results) { %> <h1>Search for cards to add</h1> <% } else { %>
-            <% results.forEach(card => { %> 
-                <img src="<%=card.image_uris.small%>">
-            <% }) %> 
-        <% } %>
+    <div id="edit-search" class="wrapper">
+        <% results.forEach(card => { %>
+            <div class="results"><img src="<%=card.image_uris.small%>"></div>
+        <% }) %>
+         
     </div>
     <div id="deck-view">
-     <% if (deck.cards.length > 0) { %>
-        <% cards.forEach(card => { %>
-            <img src="<%card.image_uris.small%>">
+        <% deck.cards.forEach(card => { %>
+            <div><img src="<%= card.image_uris.small %>"></div>
         <% }) %>
-     <% } %>
     </div>
-</div>
+</div> 
 
 <%- include('../partials/footer.ejs') %>

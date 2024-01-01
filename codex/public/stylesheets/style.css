@@ -16,6 +16,8 @@ a > div {
 
 .results {
   margin-bottom: 2vmin;
+  margin-left: 2vmin;
+  margin-right: 2vmin;
 }
 
 .login {
@@ -47,12 +49,15 @@ a > div {
   font-size: 12px;
 }
 
-#card-container {
+.card {
+  
+}
+/* #card-container {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-around;
-}
+} */
 
 #nav-title {
   display: flex;
@@ -108,4 +113,16 @@ a > div {
   border-radius: 10px;
   height: 30vmin;
   padding-top: 10px;
+}
+
+#deck-view {
+  overflow-y: auto;
+  border: solid 1px black;
+  height: 50vmin;
+}
+
+#edit-search {
+  overflow-y: auto;
+  border: solid 1px black;
+  height: 100vmin;
 }
