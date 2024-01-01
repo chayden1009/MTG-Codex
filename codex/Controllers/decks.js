@@ -29,10 +29,9 @@ const edit = async (req, res) => {
     let results;
     
     let deck = await user.decks.find(d => d._id.equals(mongoose.Types.ObjectId.createFromHexString(req.params.id)))
-            
+
     results = await Card.find({$text:{$search:`\"${req.query.searchValue}\"`}});
     
-    console.log(results);
     res.render('decks/edit', {deck, results})
 }
 
