@@ -23,14 +23,19 @@ const create = async (req, res) => {
 const view = async (req, res) => {
     const user = await User.findById(req.user.id);
     const decks = user.decks;
-    const deck = decks.find(d => d._id.equals(mongoose.Types.ObjectId.createFromHexString(req.params.id)));
+    const deck = decks.find((deck, idx) => deck._id.equals(mongoose.Types.ObjectId.createFromHexString(req.params.id)));
+
+    await user.populate(`decks.${decks.indexOf(deck)}.cards`);
     
     res.render('decks/view', {title: deck.name, deck});
 }
 
 const edit = async (req, res) => {
     const user = await User.findById(req.user.id);
-    let deck = await user.decks.find(d => d.id === `${req.params.id}`);
+    let deck = await user.decks.find(d => d.id === `${req.params.id}`)
+    deck.cards.forEach((el, idx, arr) => {
+        deck.populate(`cards.${idx}.card`);
+    })
     let results;
 
     results = await Card.find({$text:{$search:`\"${req.query.searchValue}\"`}});
