@@ -10,6 +10,8 @@ router.get('/:id/edit', decksCtrl.edit);
 
 router.get('/:id', decksCtrl.view);
 
+router.delete('/:id', decksCtrl.deleteDeck)
+
 router.post('/', decksCtrl.create);
 
 

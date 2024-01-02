@@ -31,5 +31,8 @@
     </div>
 </div>
 
+<form action="<%= deck.id %>?_method=DELETE" method="POST">
+    <button type="submit">DELETE DECK</button>
+</form>
 <a href="<%=deck.id%>/edit"><button>Add Cards</button></a>
 <%- include("../partials/footer.ejs") %>
