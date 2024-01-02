@@ -49,7 +49,7 @@ a > div {
   font-size: 12px;
 }
 
-.card {
+.cards {
   
 }
 /* #card-container {
@@ -122,7 +122,21 @@ a > div {
 }
 
 #edit-search {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
   overflow-y: auto;
   border: solid 1px black;
   height: 100vmin;
+}
+
+#addForm {
+  display: flex;
+  flex-direction: column;
+  background-color: black;
+  z-index: 1;
+}
+
+#numSelect {
+  width: 5px;
 }

@@ -11,13 +11,25 @@
 <div>
     <div id="edit-search" class="wrapper">
         <% results.forEach(card => { %>
-            <div class="results"><img src="<%=card.image_uris.small%>"></div>
+            <div class="results">
+                <img src="<%=card.image_uris.small%>">
+                <form id="addForm" action="/decks/<%=deck.id%>" method="POST">
+                    <div class="numSelect">
+                        <button class="sub">-</button>
+                        <input type="text" value="1" name="quantity">
+                        <button class="add">+</button>
+                    </div>
+                    <input type="hidden" name="cardId" value="<%=card._id%>">
+                    <input type="submit">
+                </form>
+            </div>
         <% }) %>
-         
     </div>
     <div id="deck-view">
         <% deck.cards.forEach(card => { %>
-            <div><img src="<%= card.image_uris.small %>"></div>
+            <div>
+                <img class="cards" src="<%= card.image_uris.small %>">
+            </div>
         <% }) %>
     </div>
 </div> 

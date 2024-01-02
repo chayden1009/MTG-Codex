@@ -2,15 +2,12 @@ const Card = require('../Models/Card');
 const User = require('../Models/User');
 const mongoose = require('mongoose');
 
-const getUser = async (req, res) => {
-    const user = await User.findById(req.user.id);
-    return user;
-}
 
 
 
 const create = async (req, res) => {
     const user = await User.findById(req.user.id)
+
     if (!user.decks) {
         user.decks = [];
     }
@@ -33,9 +30,8 @@ const view = async (req, res) => {
 
 const edit = async (req, res) => {
     const user = await User.findById(req.user.id);
+    let deck = await user.decks.find(d => d.id === `${req.params.id}`);
     let results;
-    
-    let deck = await user.decks.find(d => d._id.equals(mongoose.Types.ObjectId.createFromHexString(req.params.id)))
 
     results = await Card.find({$text:{$search:`\"${req.query.searchValue}\"`}});
     
@@ -44,16 +40,39 @@ const edit = async (req, res) => {
 
 const addCard = async (req, res) => {
     const user = await User.findById(req.user.id);
-    const deck = user.decks.find(d => d._id.equals(mongoose.Types.ObjectId.createFromHexString(req.params.id)));
-    res.render('decks/:id/add', {title: deck.name, deck})
+    const deck = user.decks.find(d => d.id === `${req.params.id}`);
+    
+    let quantity = req.query.quantity;
+    let cardReq = req.body.cardId;
+
+    console.log(req.body.cardId);
+    if (!deck.cards) {
+        deck.cards = []
+    }
+
+    await deck.cards.push(cardReq);
+
+    try {
+        await user.save();
+        res.redirect(`${req.params.id}/edit`);
+    } catch (err) {
+        console.error(err);
+    }
 }
 
 const deleteDeck = async (req, res) => {
-    const user = getUser(req, res);
-    const deckIdx = user.decks.findIndex(d => d._id.equals(mongoose.Types.ObjectId.createFromHexString(req.params.id)))
-    user.decks.remove(deckIdx);
+    const user = await User.findById(req.user.id)
+    const deck = user.decks.find(d => d._id.equals(mongoose.Types.ObjectId.createFromHexString(req.params.id)));
+    const deckIdx = user.decks.indexOf(deck);
 
-    res.render('/', {title: 'MTG Codex'});
+    user.decks.splice(deckIdx, 1);
+
+    try {
+        await user.save();
+    } catch(err) {
+        console.error(err);
+    }
+    res.redirect('/');
 }
 
 
