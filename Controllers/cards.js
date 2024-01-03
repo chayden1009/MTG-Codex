@@ -1,4 +1,4 @@
-const Card = require('../codex/Models/Card');
+const Card = require('../Models/Card');
 
 const index = async (req, res) => {
     const cards = await Card.find({}).select('image_uris');

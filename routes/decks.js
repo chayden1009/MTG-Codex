@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const decksCtrl = require('../../Controllers/decks');
+const decksCtrl = require('../Controllers/decks');
 
 router.get('/new', (req, res) => {
     res.render('decks/new')
