@@ -1,7 +1,9 @@
 <%- include('../partials/header.ejs') %>
+<div class="wrapper" id="deck-creation">
     <h1>Create a New Deck</h1>
-    <form action="/decks" method="POST">
+    <form class="form" action="/decks" method="POST">
         <input type="text" name="name" placeholder="Deck Name">
         <input type="submit" value="Add Deck">
     </form>
+</div>
 <%- include('../partials/footer.ejs') %>

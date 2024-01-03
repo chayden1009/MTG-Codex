@@ -1,39 +1,38 @@
 <%- include("../partials/header.ejs") %>
-
-<div id="nav-title">
-    <form action="/codex/search" method="GET">
-        <input id="searchbar" type="text" name="name" placeholder="Search Cards">
-    </form>
-</div>
-
-<div id="mainwrapper">
-    <div id="side-bar">
-        <h1 id="deck-title"> <%= title %> </h1>
-        <div id="deck-title">
-            <h4>
-                Deck Limit: <%=deck.cards.length%>/50
-            </h4>
-        </div>
-                
-        <form id="filters" action="">
-            <select name="" id="">
-                <option value="">filter</option>
-                <option value="">filter</option>
-                <option value="">filter</option>
-                <option value="">filter</option>
-            </select>
-            <input type="checkbox" name="Option" id="option1">
-            <label for="option1">option 1</label>
-            <input type="checkbox" id="option2">
-            <label for="option2">option 2</label>
+<div>
+    <div>
+        <form action="/codex/search" method="GET">
+            <input class="searchbar" type="text" name="name" placeholder="Search Cards">
         </form>
     </div>
-        <div id="card-list">
-        <% if (deck.cards.length > 0) {deck.cards.forEach(card => { %>
-            <img src="<%= card.image_uris.small%>">
-        <% })} else { %> 
-            <h1>Deck is Empty<h1> 
-        <% } %>
+    
+    <div>
+        <div>
+            <h1> <%= title %> </h1>
+            <div>
+                <h4>
+                    Deck Limit: <%=deck.cards.length%>/50
+                </h4>
+            </div>
+                    
+            <form action="">
+                <select name="">
+                    <option value="">filter</option>
+                    <option value="">filter</option>
+                    <option value="">filter</option>
+                    <option value="">filter</option>
+                </select>
+                <input type="checkbox" name="Option">
+                <input type="checkbox">
+            </form>
+        </div>
+            <div id="card-list">
+            <% if (deck.cards.length > 0) {deck.cards.forEach(card => { %>
+                <img src="<%= card.image_uris.small%>">
+            <% })} else { %> 
+                <h1>Deck is Empty<h1> 
+            <% } %>
+        </div>
     </div>
 </div>
 

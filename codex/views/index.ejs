@@ -4,33 +4,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MTG Codex</title>
-    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="/stylesheets/home-style.css">
 </head>
 <body>
-<nav>
-    <% if (user) { %>
 
-        <a href="/logout">LOGOUT</a>    
-    <% } else { %>
-        <a href="/auth/google" class="login">LOG IN&nbsp;<img src="https://i.imgur.com/FHjYyi0.png"></a>
-    <% } %>
-</nav>
-<header>
-<div id="nav-title">
-    <h1><%= title %></h1>
+<nav id="nav-bar">
+    <% if (user) { %>
+        <div id="user">
+            <img id="user-image" src="<%=user.avatar%>">
+            <a id="user-logout" href="/logout">LOGOUT</a>    
+        </div>
+        <% } else { %>
+            <a href="/auth/google" class="login">LOG IN&nbsp;<img id="login-icon" src="https://i.imgur.com/FHjYyi0.png"></a>
+        <% } %>
+        <div id="site-title"><h1><a href="/">MTG Codex</a></h1></div>
+        <div></div>
+    </nav>
+
+
+<div id="search-title">
     <form action="/codex/search" method="GET">
-        <input id="searchbar" type="text" name="name" placeholder="Search Cards">
+        <input class="searchbar" type="text" name="name" placeholder="Search Cards">
     </form>
 </div>
-</header>
+
 <% if (user) { %>
     <div class="wrapper">
-        <div id="new-deck" class="deck"><a href="/decks/new">+</a></div>
-    <%  user.decks.forEach(d => { %>
-        <div class="deck"><a href="decks/<%=d.id%>"><%= d.name %></a></div>
+        <div id="new-deck" class="deck" style="color: black; background-color: white;"><a href="/decks/new">+</a></div>
+    <%  user.decks.forEach(deck => { %>
+            <div class="deck" style="background-color: white; color: black;"><a href="decks/<%=deck.id%>"><%= deck.name %></a></div>
     <% }) %>
     </div>
 <% } %>
 
+    <script>
+        document.getElementById('newDeck').style.backgroundColor = 'white';
+    </script>
 
 <%- include('./partials/footer.ejs') %>
