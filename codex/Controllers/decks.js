@@ -51,7 +51,7 @@ const addCard = async (req, res) => {
         deck.cards = []
     }
     for (let i = 0; i < quantity; i++) {
-        await deck.cards.push({_id: req.body.cardId, quantity: req.body.quantity});
+        await deck.cards.push(`${req.body.cardId}`);
         try {
             await user.save();
         } catch(err) {
