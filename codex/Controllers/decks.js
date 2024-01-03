@@ -22,20 +22,18 @@ const create = async (req, res) => {
 
 const view = async (req, res) => {
     const user = await User.findById(req.user.id);
-    const decks = user.decks;
-    const deck = decks.find((deck, idx) => deck._id.equals(mongoose.Types.ObjectId.createFromHexString(req.params.id)));
+    const deck = user.decks.find((deck, idx) => deck._id.equals(mongoose.Types.ObjectId.createFromHexString(req.params.id)));
 
-    await user.populate(`decks.${decks.indexOf(deck)}.cards`);
+    await user.populate(`decks.${user.decks.indexOf(deck)}.cards`);
     
     res.render('decks/view', {title: deck.name, deck});
 }
 
 const edit = async (req, res) => {
     const user = await User.findById(req.user.id);
-    let deck = await user.decks.find(d => d.id === `${req.params.id}`)
-    deck.cards.forEach((el, idx, arr) => {
-        deck.populate(`cards.${idx}.card`);
-    })
+    let deck = await user.decks.find(d => d.id === `${req.params.id}`);
+    await user.populate(`decks.${user.decks.indexOf(deck)}.cards`);
+    
     let results;
 
     results = await Card.find({$text:{$search:`\"${req.query.searchValue}\"`}});
@@ -46,23 +44,22 @@ const edit = async (req, res) => {
 const addCard = async (req, res) => {
     const user = await User.findById(req.user.id);
     const deck = user.decks.find(d => d.id === `${req.params.id}`);
-    
-    let quantity = req.query.quantity;
-    let cardReq = req.body.cardId;
 
-    console.log(req.body.cardId);
+    const quantity = req.body.quantity;
+
     if (!deck.cards) {
         deck.cards = []
     }
-
-    await deck.cards.push(cardReq);
-
-    try {
-        await user.save();
-        res.redirect(`${req.params.id}/edit`);
-    } catch (err) {
-        console.error(err);
+    for (let i = 0; i < quantity; i++) {
+        await deck.cards.push({_id: req.body.cardId, quantity: req.body.quantity});
+        try {
+            await user.save();
+        } catch(err) {
+            console.error(err);
+        }
     }
+    
+    res.redirect(`${req.params.id}/edit`);
 }
 
 const deleteDeck = async (req, res) => {

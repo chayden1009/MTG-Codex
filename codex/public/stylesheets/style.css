@@ -49,15 +49,6 @@ a > div {
   font-size: 12px;
 }
 
-.cards {
-  
-}
-/* #card-container {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-around;
-} */
 
 #nav-title {
   display: flex;
@@ -119,6 +110,9 @@ a > div {
   overflow-y: auto;
   border: solid 1px black;
   height: 50vmin;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
 }
 
 #edit-search {

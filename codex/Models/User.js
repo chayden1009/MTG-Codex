@@ -8,7 +8,11 @@ const deckSchema = new Schema({
     },
     cards: [{
       type: Schema.Types.ObjectId,
-      ref: 'Cards'
+      ref: 'Cards',
+      quantity: {
+        type: Number,
+        required: true,
+      }
     }],
 })
 
