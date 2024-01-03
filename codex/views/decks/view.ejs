@@ -1,43 +1,32 @@
 <%- include("../partials/header.ejs") %>
 <div>
-    <div>
+    <div class="search">
         <form action="/codex/search" method="GET">
             <input class="searchbar" type="text" name="name" placeholder="Search Cards">
         </form>
     </div>
     
-    <div>
-        <div>
-            <h1> <%= title %> </h1>
-            <div>
-                <h4>
+    <div class="wrapper" id="deck-view">
+        <div id="side-panel">
+            <h1 class="panel-cell" style="color: white;"> <%= title %> </h1>
+            <div class="panel-cell">
+                <h3 style="color: white;">
                     Deck Limit: <%=deck.cards.length%>/50
-                </h4>
+                </h3>
             </div>
-                    
-            <form action="">
-                <select name="">
-                    <option value="">filter</option>
-                    <option value="">filter</option>
-                    <option value="">filter</option>
-                    <option value="">filter</option>
-                </select>
-                <input type="checkbox" name="Option">
-                <input type="checkbox">
+            <a class="panel-button" href="<%=deck.id%>/edit"><button>Add Cards</button></a>
+            <form class="panel-button" action="<%= deck.id %>?_method=DELETE" method="POST">
+                <button type="submit">DELETE DECK</button>
             </form>
         </div>
-            <div id="card-list">
+            <div id="deck">
             <% if (deck.cards.length > 0) {deck.cards.forEach(card => { %>
                 <img src="<%= card.image_uris.small%>">
             <% })} else { %> 
-                <h1>Deck is Empty<h1> 
+                <h1 style="color: white;">Deck is Empty<h1> 
             <% } %>
         </div>
     </div>
 </div>
 
-<form action="<%= deck.id %>?_method=DELETE" method="POST">
-    <button type="submit">DELETE DECK</button>
-</form>
-<a href="<%=deck.id%>/edit"><button>Add Cards</button></a>
 <%- include("../partials/footer.ejs") %>
