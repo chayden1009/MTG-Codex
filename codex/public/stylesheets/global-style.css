@@ -15,6 +15,12 @@ a > div {
   color: black;
 }
 
+.search {
+  margin-top: 2vmin;
+  display: flex;
+  justify-content: center;
+}
+
 .searchbar {
   border: 1px solid black;
   border-radius: 15px;
