@@ -1,31 +1,27 @@
 <%- include('../partials/header.ejs') %>
 
 
-<div id="nav-title">
+<div class="search">
     <form action="edit" method="get">
-        <input id="searchbar" type="text" placeholder="Search Cards" name="searchValue">
+        <input class="searchbar" type="text" placeholder="Search Cards" name="searchValue">
         <input type="hidden" name="deckId" value="<%= deck._id %>">
     </form>
 </div>
 
-<div>
-    <div id="edit-search" class="wrapper">
+<div class="wrapper" id="edit-wrapper">
+    <div id="edit-search" class="result-container">
         <% results.forEach(card => { %>
             <div class="results">
                 <img src="<%=card.image_uris.small%>">
-                <form id="addForm" action="/decks/<%=deck.id%>" method="POST">
-                    <div class="numSelect">
-                        <button class="sub">-</button>
-                        <input type="text" value="1" name="quantity">
-                        <button class="add">+</button>
-                    </div>
-                    <input type="hidden" name="cardId" value="<%=card._id%>">
-                    <input type="submit">
+                <form class="addForm" action="/decks/<%=deck.id%>" method="POST">
+                    <input type="hidden" value="<%=card.id%>">
+                    <input type="text" value="1" name="quantity">
+                    <input type="submit" value="Add">
                 </form>
             </div>
         <% }) %>
     </div>
-    <div id="deck-view">
+    <div id="deck-search" class="result-container">
         <% deck.cards.forEach(card => { %>
             <div>
                 <img class="cards" src="<%= card.image_uris.small %>">

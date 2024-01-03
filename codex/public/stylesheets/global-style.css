@@ -159,3 +159,27 @@ deck-view > div {
   width: 100%;
 }
 
+/*deck edit view*/
+
+#edit-wrapper {
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.result-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+
+  border: 1px solid black;
+  width: 50vmax;
+  height: 80vmin;
+  overflow-y: scroll;
+  background-color:#1e1e1e;
+}
+
+
+
+
+
